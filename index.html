@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>enbiei</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600;1,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Hermana de Fulbolito: misma cabecera de senal deportiva, en naranja con un punteado suave de balon. */
+:root{
+  --paper:#f7efe7; --card:#ffffff; --ink:#2a1609; --muted:#6e5646; --line:#e6d3c3;
+  --accent:#c2500f; --accent-ink:#ffffff;
+  --navy:#3a1606; --navy-2:#8a3510; --sky:#ef7a22; --sky-2:#c95a12; --head-ink:#fff6ee;
+  --alta:#1f7a4d; --media:#a86a00; --baja:#7d6a5e;
+  --home:#c2500f; --away:#2c4a6e;
+  --dots:rgba(122,52,10,.075);
+  --f-display:"Barlow Condensed","Arial Narrow",sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#160c06; --card:#24140b; --ink:#f6e9de; --muted:#c4a690; --line:#41291a;
+    --accent:#ff9a4d; --accent-ink:#160c06;
+    --navy:#1e0b03; --navy-2:#5e2408; --sky:#e06d1a; --sky-2:#b04f0c; --head-ink:#fff6ee;
+    --alta:#5ec48f; --media:#e3ad4a; --baja:#a8968a;
+    --home:#ff9a4d; --away:#7fa7d6;
+    --dots:rgba(255,160,90,.05);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#160c06; --card:#24140b; --ink:#f6e9de; --muted:#c4a690; --line:#41291a;
+  --accent:#ff9a4d; --accent-ink:#160c06;
+  --navy:#1e0b03; --navy-2:#5e2408; --sky:#e06d1a; --sky-2:#b04f0c; --head-ink:#fff6ee;
+  --alta:#5ec48f; --media:#e3ad4a; --baja:#a8968a;
+  --home:#ff9a4d; --away:#7fa7d6;
+  --dots:rgba(255,160,90,.05);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+/* Punteado de balon: puntos chicos y tenues, para no estorbar la lectura. */
+body{background-color:var(--paper);background-image:radial-gradient(var(--dots) 1px,transparent 1.4px);background-size:7px 7px;color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:.01em}
+h2{font-size:22px;font-weight:600;text-transform:uppercase}
+h3{font-size:17px;font-weight:600;text-transform:uppercase;color:var(--muted)}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.inner{max-width:860px;margin:0 auto;padding:0 16px}
+.top{color:var(--head-ink);background:
+  radial-gradient(rgba(0,0,0,.16) 1px,transparent 1.5px) 0 0/6px 6px,
+  radial-gradient(120% 140% at 80% 0%,var(--navy-2),var(--navy) 62%)}
+.top .inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
+.brand{flex:1 1 240px;min-width:0;display:flex;gap:14px;align-items:center}
+.brand h1{font-size:0;line-height:0;flex:0 0 auto}
+.brand img{display:block;height:72px;width:auto}
+.brand p{margin:0;font-size:13px;opacity:.9;max-width:42ch}
+.side{flex:0 1 330px;margin-left:auto;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.daynav{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:nowrap;white-space:nowrap}
+.daynav .date{font-family:var(--f-display);font-size:17px;font-weight:600;text-transform:uppercase}
+.daynav button{background:var(--sky);color:#fff;border:0;border-radius:3px;padding:5px 10px;font-family:var(--f-display);font-size:15px;font-weight:700;text-transform:uppercase}
+.bill{width:100%;background:rgba(30,10,2,.55);border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:8px 12px}
+.bill b{display:block;text-align:right;font-family:var(--f-display);font-style:italic;font-size:14px;font-weight:600;opacity:.85}
+.bill a{display:flex;justify-content:space-between;gap:10px;color:var(--head-ink);text-decoration:none;font-family:var(--f-display);font-size:16px;font-weight:600;line-height:1.35}
+.bill a::before{content:"\00bb";color:#ffb27a;margin-right:4px}
+.bill a span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.bill a span:last-child{font-variant-numeric:tabular-nums}
+.cats{background:linear-gradient(var(--sky),var(--sky-2));border-top:1px solid rgba(255,255,255,.35);border-bottom:2px solid var(--navy)}
+.cats .inner{display:flex;align-items:center;gap:8px}
+.cats .scroll{display:flex;align-items:stretch;overflow-x:auto;flex:1;min-width:0}
+.tag{flex:0 0 auto;background:#0b0f14;color:#fff;font-family:var(--f-display);font-style:italic;font-weight:700;font-size:14px;text-transform:uppercase;padding:6px 16px 6px 12px;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%);display:flex;align-items:center;margin-right:2px}
+.cat{flex:0 0 auto;background:none;border:0;border-right:1px solid rgba(255,255,255,.3);color:#fff;font-family:var(--f-display);font-weight:700;font-size:14px;padding:6px 12px;white-space:nowrap;text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.cat small{font-weight:600;font-size:11px;opacity:.8;margin-left:4px}
+.cat[aria-pressed="true"]{background:#fff;color:var(--sky-2);text-shadow:none}
+/* Pase al otro portal: boton redondo al final de la franja. */
+.portal{flex:0 0 auto;width:52px;height:52px;margin:-8px 0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:var(--f-display);font-style:italic;font-weight:700;font-size:15px;text-transform:lowercase;color:#fff;background:radial-gradient(circle at 35% 30%,#4fa9ec,#0f5fa8 70%);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);position:relative;z-index:1}
+.portal:hover{transform:scale(1.06)}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 48px;display:flex;flex-direction:column;gap:20px}
+.cc{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:22px;padding:0 5px;border-radius:3px;font-family:var(--f-display);font-weight:700;font-size:13px;letter-spacing:.04em;border:1px solid rgba(0,0,0,.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.banner{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.chip{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:96px}
+.chip.star{border-color:var(--accent);border-width:2px}
+.chip .fl{display:flex;gap:4px;align-items:center}
+.chip .tm{font-family:var(--f-display);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.group{display:flex;flex-direction:column;gap:8px}
+.match{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.match.star{border-left:4px solid var(--accent)}
+.row{width:100%;background:none;border:0;text-align:left;padding:12px;display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center}
+.row .tm{font-family:var(--f-display);font-size:21px;font-weight:600;font-variant-numeric:tabular-nums}
+.teams{display:flex;flex-direction:column;gap:4px;min-width:0}
+.teams span.t{display:flex;gap:8px;align-items:center;font-weight:500}
+.teams span.t small{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.teams .comp{font-size:12px;color:var(--muted);margin-top:1px}
+.row .go{font-family:var(--f-display);font-size:14px;color:var(--accent);text-transform:uppercase;font-weight:600;white-space:nowrap}
+.prob{display:flex;flex-direction:column;gap:4px;padding:0 12px 12px}
+.bar{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--line);gap:2px}
+.bar i{display:block;height:100%}
+.bar .h{background:var(--home)} .bar .a{background:var(--away)}
+.problab span:last-child{text-align:right}
+.problab{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;gap:8px;flex-wrap:wrap}
+.detail{border-top:1px solid var(--line);padding:14px 12px;display:flex;flex-direction:column;gap:14px}
+.lvl{display:flex;flex-direction:column;gap:8px}
+.lvl p{margin:0;max-width:65ch}
+.lvl ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;max-width:65ch}
+.num{font-weight:700;font-variant-numeric:tabular-nums}
+.press{display:flex;flex-direction:column;gap:6px}
+.press a{display:block;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:8px 10px;text-decoration:none;color:var(--ink)}
+.press a b{color:var(--accent);font-weight:600}
+.press a.sec{border-style:dashed;color:var(--muted)}
+.more{align-self:flex-start;background:none;border:1px solid var(--accent);color:var(--accent);border-radius:4px;padding:8px 12px;font-family:var(--f-display);font-size:16px;font-weight:600;text-transform:uppercase}
+.dato{border-left:4px solid var(--sky);background:var(--paper);padding:10px 12px;border-radius:0 4px 4px 0}
+.dato>b{display:block;font-family:var(--f-display);font-size:19px;font-weight:700;line-height:1.2}
+.dato>span{color:var(--muted);font-size:13.5px}
+.tip{border:1px solid var(--line);border-radius:4px;padding:10px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;background:var(--paper)}
+.tip .k{font-family:var(--f-display);font-size:13px;text-transform:uppercase;color:var(--muted);font-weight:600;grid-column:1/-1}
+.tip .t{font-weight:600}
+.tip .w{grid-column:1/-1;color:var(--muted);font-size:13.5px}
+.conf{font-family:var(--f-display);font-size:13px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:10px;border:1.5px solid;align-self:start;white-space:nowrap}
+.conf.alta{color:var(--alta)} .conf.media{color:var(--media)} .conf.baja{color:var(--baja);border-style:dashed}
+/* Jugadores clave: dos columnas, local a la izquierda y visita a la derecha. */
+.keys{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.kt{display:flex;flex-direction:column;gap:6px;min-width:0}
+.kt h4{margin:0;display:flex;gap:8px;align-items:center;font-size:15px;font-weight:600}
+.kp{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:7px 9px;display:flex;flex-direction:column;gap:1px}
+.kp b{font-weight:600;overflow-wrap:anywhere}
+.kp span{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.kp em{font-style:normal;font-size:12px;font-weight:600;color:var(--away)}
+.kp.out{opacity:.7}
+.kp.out em{color:#b5452c}
+@media (max-width:420px){.keys{grid-template-columns:1fr}}
+.sites{display:flex;flex-wrap:wrap;gap:6px}
+.sites a{font-size:13px;border:1px solid var(--line);border-radius:12px;padding:3px 10px;text-decoration:none;background:var(--card)}
+.note{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.note ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.note .hd{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.small{font-size:13px;color:var(--muted)}
+.empty{color:var(--muted);padding:8px 0}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="inner">
+    <div class="brand">
+      <h1>enbiei<img src="logo.png" alt="enbiei"></h1>
+      <p id="sub"></p>
+    </div>
+    <div class="side">
+      <div class="daynav">
+        <span class="date" id="dateLabel"></span>
+        <button id="dayBtn" type="button"></button>
+      </div>
+      <div class="bill" id="bill"></div>
+    </div>
+  </div>
+</header>
+<nav class="cats" aria-label="Filtrar"><div class="inner"><div class="scroll"><span class="tag">Partidos</span><span id="cats" style="display:flex"></span></div><a class="portal" id="portal" href="../" target="_top" title="Ir a Fulbolito" aria-label="Ir a Fulbolito">fulbo</a></div></nav>
+
+<div class="wrap">
+  <nav class="banner" id="banner" aria-label="Partidos del dia"></nav>
+  <main id="list" class="group" style="gap:20px"></main>
+
+  <section class="note">
+    <div class="hd"><h2>Ponte al dia</h2><button class="more" type="button" id="rot">Otros datos</button></div>
+    <h3 id="pdTitle"></h3>
+    <ul id="pdList"></ul>
+  </section>
+
+  <section class="note">
+    <h2>Tus sitios de estadisticas</h2>
+    <div class="sites" id="sites"></div>
+    <p class="small">Esta pagina no lee esos sitios en vivo: se arma una vez al dia con busqueda web. Ultima actualizacion: <span id="upd"></span>. La barra de probabilidad sale de un modelo simple de enbiei (diferencial de puntos de la temporada, recortado a la mitad por lo corto de la muestra, mas ventaja de local), no de cuotas de apuestas. Los tips salen solo de promedios y resultados ya jugados. Las bajas son las del reporte de lesiones del dia anterior: revisa el estado final antes del salto inicial. Los enlaces con borde punteado llevan a la seccion del equipo en su medio local. Nada de esto es certeza. Si apuestas, hazlo con moderacion.</p>
+  </section>
+</div>
+
+<script src="data.js"></script>
+<script>
+const SITES=[["Basketball-Reference","https://www.basketball-reference.com"],["NBA Stats","https://www.nba.com/stats"],["Cleaning The Glass","https://cleaningtheglass.com"],["PBP Stats","https://www.pbpstats.com"],["BBall-Index","https://www.bball-index.com"],["Dunks and Threes","https://dunksandthrees.com"],["Crafted NBA","https://craftednba.com"],["StatMuse","https://www.statmuse.com/nba"],["NBA Stuffer","https://www.nbastuffer.com"],["Hashtag Basketball","https://hashtagbasketball.com"]];
+/* Pase a Fulbolito: en GitHub vive una carpeta arriba; en claude.ai, en su propio artifact. */
+(function(){const p=document.getElementById("portal");if(!/github\.io$/.test(location.hostname))p.href="https://claude.ai/artifact/3A9wPnvUQw8un4vaAmiXqz";})();
+let day="hoy", cat="all"; const open={}, openK={};
+const start=new Date(new Date().getFullYear(),0,0);
+let pd=Math.floor((Date.now()-start)/864e5)%PD.length;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const nb=s=>esc(s).replace(/\d+(?:[.,:–\-\/]\d+)*(?:\s?%)?/g,m=>'<b class="num">'+m+'</b>');
+const ul=a=>'<ul>'+a.map(x=>'<li>'+nb(x)+'</li>').join("")+'</ul>';
+/* Marca de equipo: rectangulo con los colores del club y su sigla. */
+function mark(k){const t=T[k]||{s:k.toUpperCase(),c:["#555","#fff"]};return '<b class="cc" style="background:'+esc(t.c[0])+';color:'+esc(t.c[1])+'">'+esc(t.s)+'</b>';}
+const nm=k=>(T[k]&&T[k].n)||k;
+const nick=k=>{const n=nm(k);return /Trail Blazers$/.test(n)?"Blazers":n.split(" ").pop();};
+const rec=k=>(T[k]&&T[k].r)?' <small>'+esc(T[k].r)+'</small>':'';
+function probHTML(m){
+  if(!m.p) return "";
+  const [h,a]=m.p;
+  return '<div class="prob"><div class="bar" role="img" aria-label="Local '+h+'%, visita '+a+'%"><i class="a" style="width:'+a+'%"></i><i class="h" style="width:'+h+'%"></i></div>'+
+  '<div class="problab"><span>'+esc(T[m.a].s)+' visita '+a+'%</span>'+(m.mg?'<span>Margen proyectado '+esc(m.mg)+'</span>':'')+(m.tot?'<span>Total proyectado '+esc(m.tot)+'</span>':'')+'<span>'+esc(T[m.h].s)+' local '+h+'%</span></div></div>';
+}
+function keyTeam(k,list){
+  let s='<div class="kt"><h4>'+mark(k)+esc(nm(k))+'</h4>';
+  s+=(list||[]).map(p=>'<div class="kp'+(p[2]?' out':'')+'"><b>'+esc(p[0])+'</b>'+(p[1]&&p[1]!=="—"?'<span>'+esc(p[1])+'</span>':'')+(p[2]?'<em>'+esc(p[2])+'</em>':'')+'</div>').join("");
+  return s+'</div>';
+}
+function keysHTML(m){
+  if(!m.keys) return "";
+  let s='<button class="more" type="button" data-keys="'+m.id+'" aria-expanded="'+(openK[m.id]?"true":"false")+'">Jugadores clave'+(openK[m.id]?" ▴":" ▾")+'</button>';
+  if(!openK[m.id]) return s;
+  return s+'<div class="lvl"><div class="keys">'+keyTeam(m.a,m.keys.a)+keyTeam(m.h,m.keys.h)+'</div><p class="small">Visita a la izquierda, local a la derecha. Promedios de la temporada: puntos, rebotes y asistencias por partido (partidos jugados).</p></div>';
+}
+function detailHTML(m){
+  const lv=open[m.id]||0; if(!lv) return "";
+  let s='<div class="detail"><div class="lvl"><h3>Que se juega</h3><p>'+nb(m.juego||"")+'</p>';
+  if(m.prensa&&m.prensa.length) s+='<div class="press">'+m.prensa.map(p=>'<a'+(p[3]?' class="sec"':'')+' href="'+esc(p[2])+'" target="_blank" rel="noopener"><b>'+esc(p[1])+'</b> · '+esc(p[0])+'</a>').join("")+'</div>';
+  s+='</div>'+keysHTML(m);
+  const has2=m.h2h||m.racha||m.bajas||m.dato;
+  const label=(m.h2h||m.racha)?"Mano a mano, racha y dato certero":"Dato certero";
+  if(has2&&lv<2) s+='<button class="more" type="button" data-more="'+m.id+'">'+label+'</button>';
+  if(has2&&lv>=2){
+    if(m.h2h) s+='<div class="lvl"><h3>Mano a mano</h3>'+ul(m.h2h)+'</div>';
+    if(m.racha) s+='<div class="lvl"><h3>Racha</h3>'+ul(m.racha)+'</div>';
+    if(m.bajas) s+='<div class="lvl"><h3>Bajas y novedades</h3>'+ul(m.bajas)+'</div>';
+    if(m.dato) s+='<div class="lvl"><h3>Dato certero</h3><div class="dato"><b>'+nb(m.dato[0])+'</b><span>'+nb(m.dato[1])+'</span></div></div>';
+  }
+  const ready=m.tips&&m.tips.length&&(!has2||lv>=2);
+  if(ready&&lv<3) s+='<button class="more" type="button" data-more="'+m.id+'">Ver hot tips</button>';
+  if(ready&&lv>=3) s+='<div class="lvl"><h3>Hot tips</h3>'+m.tips.map(t=>'<div class="tip"><span class="k">'+esc(t[0])+'</span><span class="t">'+esc(t[1])+'</span><span class="conf '+esc(t[2])+'">Confianza '+esc(t[2])+'</span><span class="w">'+nb(t[3])+'</span></div>').join("")+'</div>';
+  return s+'</div>';
+}
+function render(){
+  const all=M.filter(m=>m.day===day).sort((a,b)=>a.t.localeCompare(b.t));
+  const ms=all.filter(m=>cat==="all"||m.cat===cat);
+  document.getElementById("sub").textContent=SUB[day];
+  document.getElementById("dateLabel").textContent=FECHA[day]+" · hora de Chile";
+  document.getElementById("dayBtn").textContent=day==="hoy"?"Mañana →":"← Hoy";
+  const stars=all.filter(m=>m.star).slice(0,3);
+  document.getElementById("bill").innerHTML='<b>'+(day==="hoy"?"Hoy":"Mañana")+' por enbiei</b>'+stars.map(m=>'<a href="#" data-jump="'+m.id+'"><span>'+esc(nick(m.a)+" @ "+nick(m.h))+'</span><span>'+m.t+'</span></a>').join("");
+  document.getElementById("cats").innerHTML=CATS.map(c=>{const n=c[0]==="all"?all.length:all.filter(m=>m.cat===c[0]).length;return n?'<button type="button" class="cat" data-cat="'+c[0]+'" aria-pressed="'+(cat===c[0])+'">'+esc(c[1])+'<small>'+n+'</small></button>':"";}).join("");
+  document.getElementById("banner").innerHTML=ms.map(m=>'<button type="button" class="chip'+(m.star?" star":"")+'" data-jump="'+m.id+'" aria-label="'+esc(nm(m.a)+" en "+nm(m.h))+'"><span class="fl">'+mark(m.a)+mark(m.h)+'</span><span class="tm">'+m.t+'</span></button>').join("");
+  const order=CATS.map(c=>c[0]).filter(c=>c!=="all");
+  document.getElementById("list").innerHTML=order.filter(g=>ms.some(m=>m.cat===g)).map(g=>'<section class="group"><h2>'+esc(CATNAME[g]||g)+'</h2>'+ms.filter(m=>m.cat===g).map(m=>
+    '<article class="match'+(m.star?" star":"")+'" id="m-'+m.id+'"><button class="row" type="button" data-toggle="'+m.id+'" aria-expanded="'+(open[m.id]?"true":"false")+'"><span class="tm">'+m.t+'</span><span class="teams"><span class="t">'+mark(m.a)+esc(nm(m.a))+rec(m.a)+'</span><span class="t">'+mark(m.h)+esc(nm(m.h))+rec(m.h)+'</span>'+(m.comp?'<span class="comp">'+esc(m.comp)+'</span>':"")+'</span><span class="go">'+(open[m.id]?"Cerrar":"Ver")+'</span></button>'+probHTML(m)+detailHTML(m)+'</article>').join("")+'</section>').join("")||'<p class="empty">No hay partidos en esta categoria.</p>';
+  document.getElementById("pdTitle").textContent=PD[pd][0];
+  document.getElementById("pdList").innerHTML=PD[pd][1].map(x=>'<li>'+nb(x)+'</li>').join("");
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-toggle],[data-more],[data-keys],[data-jump],[data-cat],#dayBtn,#rot"); if(!t) return;
+  if(t.id==="dayBtn"){day=day==="hoy"?"man":"hoy";cat="all";render();return;}
+  if(t.id==="rot"){pd=(pd+1)%PD.length;render();return;}
+  if(t.dataset.keys){const id=t.dataset.keys;openK[id]=!openK[id];render();return;}
+  if(t.dataset.cat){cat=t.dataset.cat;render();return;}
+  if(t.dataset.toggle){const id=t.dataset.toggle;open[id]=open[id]?0:1;render();return;}
+  if(t.dataset.more){const id=t.dataset.more;open[id]=(open[id]||1)+1;render();return;}
+  if(t.dataset.jump){e.preventDefault();const id=t.dataset.jump;const m=M.find(x=>x.id===id);if(cat!=="all"&&m&&m.cat!==cat)cat="all";if(!open[id])open[id]=1;render();const el=document.getElementById("m-"+id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
+});
+document.getElementById("sites").innerHTML=SITES.map(s=>'<a href="'+s[1]+'" target="_blank" rel="noopener">'+s[0]+'</a>').join("");
+document.getElementById("upd").textContent=ACTUALIZADO;
+render();
+</script>
+</body>
+</html>
